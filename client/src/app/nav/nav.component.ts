@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
 
   model: any = {}
 
-  constructor(private accountService: AccountService) { }
+  constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
   }

@@ -8,27 +8,16 @@ import { AccountService } from './_services/account.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'The Dating app';
   users: any;
 
-  constructor(public http: HttpClient, private accountService: AccountService) {}
+  constructor( public accountService: AccountService) {}
 
-  ngOnInit() {
-    this.getUsers();
-    this.setCurrentUser();
-  }
 
   setCurrentUser() {
     const user: User = JSON.parse(localStorage.getItem('user'));
     this.accountService.setCurrentUser(user);
   }
 
-  getUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe(response => {
-      this.users = response;
-    }, error => {
-      console.log(error);
-    })
-  }
 }
