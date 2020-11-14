@@ -1,4 +1,4 @@
-import { User } from './_modals/user';
+import { User } from './_models/user';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './_services/account.service';
@@ -13,6 +13,10 @@ export class AppComponent {
   users: any;
 
   constructor( public accountService: AccountService) {}
+
+  ngOnInit() {
+    this.setCurrentUser();
+  }
 
 
   setCurrentUser() {
