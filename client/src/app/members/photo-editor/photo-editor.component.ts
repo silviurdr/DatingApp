@@ -20,16 +20,22 @@ export class PhotoEditorComponent implements OnInit {
 
   constructor(private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
-    
+
    }
 
   ngOnInit(): void {
     this.initializeUploader();
   }
 
+  ngAfterViewInit() {
+    this.uploader.onAfterAddingFile = (item => {
+       item.withCredentials = false;
+    });
+ }
+
   fileOverBase(e: any) {
     this.hasBaseDropZoneOver = e;
-  } 
+  }
 
   initializeUploader() {
     console.log(this.baseUrl)
@@ -41,15 +47,8 @@ export class PhotoEditorComponent implements OnInit {
       removeAfterUpload: true,
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024,
+      headers: [{name:'Accept', value:'application/json'}],
     });
-
-
-    this.uploader.onAfterAddingAll = (file) => {
-
-      file.withCredentials = false;
-      console.log(this.uploader);
-      console.log(file);
-    }
 
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
