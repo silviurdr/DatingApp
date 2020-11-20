@@ -11,7 +11,7 @@ namespace API.Helpers
         public PagedList(IEnumerable<T> items, int count, int pageNumber, int pageSize)
         {
             this.CurrentPage = pageNumber;
-            this.TotalPages = (int) Math.Ceiling(Count / (double) pageSize);
+            this.TotalPages = (int) Math.Ceiling(count / (double) pageSize);
             this.PageSize = pageSize;
             this.TotalCount = count;
             AddRange(items);
