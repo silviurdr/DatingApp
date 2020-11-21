@@ -1,6 +1,8 @@
+using API.Helpers;
+
 namespace API.Extensions
 {
-    public class UserParams
+    public class UserParams: PaginationParams
     {
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
