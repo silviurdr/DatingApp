@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Interfaces
 {
-    interface ILikesRepository
+    public interface ILikesRepository
     {
         Task<UserLike> GetUserLike(int sourceUserId, int likedUserId);
         Task<AppUser> GetUserWithLikes(int userId);
