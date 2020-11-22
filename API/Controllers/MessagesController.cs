@@ -86,7 +86,7 @@ namespace API.Controllers
         {
             var username = User.GetUsername();
 
-            var message = await _messageRepository.GetMessages(id);
+            var message = await _messageRepository.GetMessage(id);
 
             if(message.Sender.UserName != username && message.Recipient.UserName != username)
                 return Unauthorized();
