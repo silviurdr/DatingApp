@@ -1,11 +1,13 @@
 import { AccountService } from './../_services/account.service';
-import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { take } from 'rxjs/operators';
+import { User } from '../_models/user';
 
 @Directive({
   selector: '[appHasRole]'
 })
-export class HasRoleDirective {
+export class HasRoleDirective implements OnInit {
+  @Input() appHasRole: string[];
   user: User;
 
   constructor(private viewContainerRef: ViewContainerRef, private templateRef: TemplateRef<any>,
@@ -14,5 +16,18 @@ export class HasRoleDirective {
         this.user = user;
       })
     }
+  ngOnInit(): void {
+    // clear view if no roles
+    if (!this.user.roles || this.user == null) {
+      this.viewContainerRef.clear();
+      return;
+    }
+
+    if (this.user?.roles.some(r => this.appHasRole.includes(r))) {
+      this.viewContainerRef.createEmbeddedView(this.templateRef);
+    } else {
+      this.viewContainerRef.clear();
+    }
+  }
 
 }
