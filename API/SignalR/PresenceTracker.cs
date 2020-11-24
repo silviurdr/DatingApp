@@ -42,7 +42,7 @@ namespace API.SignalR
             return Task.CompletedTask;
         }
 
-        public Task<string[]> GeOnlineUsers()
+        public Task<string[]> GetOnlineUsers()
         {
             string[] onlineUsers;
             lock(OnlineUsers)
