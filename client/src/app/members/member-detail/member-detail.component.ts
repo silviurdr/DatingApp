@@ -1,3 +1,4 @@
+import { PresenceService } from './../../_services/presence.service';
 import { MessageService } from './../../_services/message.service';
 import { MembersService } from './../../_services/members.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -20,7 +21,7 @@ export class MemberDetailComponent implements OnInit {
   activeTab: TabDirective;
   messages: Message[] = [];
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute,
+  constructor(public presence: PresenceService, private route: ActivatedRoute,
     private messageService: MessageService) { }
 
   ngOnInit(): void {
